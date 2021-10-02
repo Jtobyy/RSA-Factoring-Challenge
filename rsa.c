@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 void factor(unsigned long long int n);
+int is_prime(long long int);
 
 /**
  *main - Factorize as many numbers as possible into a product
@@ -94,14 +95,35 @@ int main(int argc, char *argv[])
  */
 void factor(unsigned long long int n)
 {
+  int p;
+  int quo;
   long long int i;
-  for(i = 2; i < n; i++)
+  for(i = 2; i < (n / 2) + 1; i++)
     {
+      quo = n / i;
       if (n % i == 0)
 	{
-	  printf("%llu=%llu*%llu\n", n, n / i, i);
-	  break;
+	  if(is_prime(i) == 0 && is_prime(quo) == 0)
+	  printf("%llu=%llu*%llu\n", n, quo, i);
+	  return;
 	}
     }
   return;
+}
+
+/**
+ *is_prime - checks if a number is prime of not
+ *
+ *@n: number to check
+ *Return 0 if true and 1 if false
+ */
+int is_prime(long long int n)
+{
+  int i;
+  for (i = 2; i < (n / 2) + 1; i++)
+    {
+      if (n % i == 0)
+	return (1);
+    }
+  return (0);
 }
