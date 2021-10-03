@@ -2,7 +2,7 @@
 '''Factorize an integer into two ints'''
 
 
-
+import sys
 
 
 def factorize(file_):
